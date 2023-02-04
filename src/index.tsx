@@ -1,15 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createStore } from "redux";
+import allReducer from "./reducers/allResucer";
+import { Provider } from "react-redux/es/exports";
 
+//createStore >　新しいstoreを作る(引数には、reducerを入れる)
+//Providerで親コンポーネントをラッピングし、全てのコンポーネントで使用できるようにする(引数には、作ったstoreを入れる)
+const store = createStore(allReducer);
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
